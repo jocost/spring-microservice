@@ -5,10 +5,9 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
-import javax.persistence.Entity;
-import java.util.Map;
-
-
+/**
+ * Entry point for microservice
+ */
 @SpringBootApplication
 @EnableAutoConfiguration
 @ComponentScan

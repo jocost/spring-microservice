@@ -5,10 +5,11 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 /**
- * Created by jocost on 6/8/2018.
+ * Repository for persisting Entities
+ *
+ * @author jocost 
  */
-public interface ResourceRepository extends CrudRepository<ApplicationResource, Integer> {
+public interface ResourceRepository extends CrudRepository<ApplicationEntity, Integer> {
 
-    @Override
-    List<ApplicationResource> findAll();
+    List<ApplicationEntity> findAll();
 }

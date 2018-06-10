@@ -1,46 +1,39 @@
 package com.project.microservice;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import org.springframework.hateoas.ResourceSupport;
+import org.springframework.hateoas.core.Relation;
+
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Map;
 
 /**
- * Created by jocost on 6/8/2018.
+ * Class Mapping a Resource to an Entity
+ *
+ * @author jocost
  */
-@Entity
-public class ApplicationResource implements Serializable {
-    @Id
-    @GeneratedValue
-    private Integer id;
+@XmlRootElement
+@Relation(value = "resource", collectionRelation = "resources")
+public class ApplicationResource extends ResourceSupport {
 
-    @ElementCollection
-    @MapKeyColumn(name="key")
-    @Column(name="value")
-    @CollectionTable(name="resource_map", joinColumns=@JoinColumn(name="id"))
+    @XmlAttribute
+    private Integer appId;
+    @XmlAttribute
     private Map<String, String> map;
 
-    public Integer getId() {
-        return id;
+    public void setAppId(Integer appId) {
+        this.appId = appId;
     }
 
-    public Map<String, String> getMap() {
-        return map;
+    public Integer getAppId() {
+        return this.appId;
     }
 
     public void setMap(Map<String, String> map) {
         this.map = map;
     }
 
-    public String getValue(String key) {
-        return this.map.get(key);
+    public Map<String, String> getMap() {
+        return this.map;
     }
-
-    public String setValue(String key, String value) {
-        return this.map.put(key, value);
-    }
-
-    public String remove(String key) {
-        return this.map.remove(key);
-    }
-
 }
