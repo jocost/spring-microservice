@@ -2,6 +2,7 @@ package com.project.microservice;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -16,11 +17,15 @@ public class ApplicationEntity implements Serializable {
     @GeneratedValue
     private Integer appId;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @MapKeyColumn(name="key")
     @Column(name="value")
     @CollectionTable(name="resource_map", joinColumns=@JoinColumn(name="appId"))
     private Map<String, String> map;
+
+    public ApplicationEntity () {
+        this.map = new HashMap<>();
+    }
 
     public Integer getAppId() {
         return appId;
